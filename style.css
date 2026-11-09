@@ -5,3 +5,205 @@ body{
     
 }
 
+/* ===== Base ===== */
+:root {
+    --verde-escuro: #1a3328;
+    --verde-texto: #1f3d30;
+    --verde-menu-topo: #36453b;
+    --verde-menu-base: #1c2b23;
+    --fundo: #ecf0ec;
+    --fundo-card: #f3f7f3;
+    --borda: #d6ddd6;
+    --texto: #22362c;
+    --azul-senai: #1c3fa8;
+    --laranja-senai: #f26522;
+    --largura-menu: 280px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0 0 80px var(--largura-menu);
+    background: linear-gradient(135deg, #f1f5f1 0%, #e9eee9 100%);
+    color: var(--texto);
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+    border-top: 3px solid #3b3a22;
+}
+
+br {
+    display: none;
+}
+
+/* ===== Barra lateral (fundo + logo feitos só com CSS) ===== */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--largura-menu);
+    background: linear-gradient(180deg, var(--verde-menu-topo) 0%, var(--verde-menu-base) 100%);
+    box-shadow: 6px 0 24px rgba(0, 0, 0, 0.18);
+    z-index: 10;
+}
+
+body::after {
+    content: "SENAI";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--largura-menu);
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #8f9686 0%, #b9bdad 100%);
+    color: var(--azul-senai);
+    font-size: 54px;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 11;
+}
+
+/* ===== Links do menu ===== */
+body > a {
+    position: fixed;
+    left: 0;
+    width: var(--largura-menu);
+    padding: 16px 27px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: capitalize;
+    line-height: 24px;
+    border-left: 4px solid transparent;
+    transition: background 0.2s, border-color 0.2s;
+    z-index: 12;
+}
+
+body > a:nth-of-type(1) {
+    top: 138px;
+}
+
+body > a:nth-of-type(2) {
+    top: 194px;
+}
+
+body > a:hover,
+body > a:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--laranja-senai);
+    outline: none;
+}
+
+body > a[href="./index.html"] {
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: var(--laranja-senai);
+}
+
+/* ===== Cabeçalho (primeiro h1) ===== */
+h1:first-of-type {
+    margin: 0 0 90px;
+    padding: 130px 40px 110px;
+    text-align: center;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    color: var(--verde-escuro);
+    background: linear-gradient(135deg, #f4f8f4 0%, #e8eee8 100%);
+    border-bottom: 1px solid var(--borda);
+    border-left: 1px solid var(--borda);
+    border-radius: 28px 0 0 28px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Títulos de seção ===== */
+h2,
+h1:not(:first-of-type) {
+    max-width: 1140px;
+    margin: 50px 0 24px 30px;
+    padding-bottom: 18px;
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -1.2px;
+    line-height: 1.2;
+    color: var(--verde-escuro);
+    border-bottom: 2px solid #b9c2b9;
+}
+
+/* ===== Parágrafos em cartão ===== */
+p {
+    max-width: 1140px;
+    margin: 0 0 24px 30px;
+    padding: 28px 25px;
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--verde-texto);
+    background: var(--fundo-card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    white-space: pre-line; /* respeita as quebras de linha do texto sem mexer no HTML */
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 800px) {
+    body {
+        padding: 150px 0 60px;
+    }
+
+    body::before,
+    body::after {
+        width: 100%;
+    }
+
+    body::before {
+        bottom: auto;
+        height: 150px;
+    }
+
+    body > a {
+        top: 110px !important;
+        width: 50%;
+        padding: 10px 16px;
+        font-size: 14px;
+        border-left: 0;
+        border-bottom: 3px solid transparent;
+    }
+
+    body > a:nth-of-type(2) {
+        left: 50%;
+    }
+
+    body > a:hover,
+    body > a[href="./index.html"] {
+        border-left: 0;
+        border-bottom-color: var(--laranja-senai);
+    }
+
+    h1:first-of-type {
+        margin-bottom: 40px;
+        padding: 60px 20px;
+        border-radius: 0 0 24px 24px;
+    }
+
+    h2,
+    h1:not(:first-of-type),
+    p {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+}
